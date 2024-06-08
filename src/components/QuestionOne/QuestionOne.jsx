@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios'
+import { useDispatch } from 'react-redux';
 
 
 const questionsOne = ({fetchFeedback}) => {
+    const dispatch = useDispatch();
 
   const[reply,setReply] = useState ([])
 
@@ -18,6 +20,12 @@ event.preventDefault()
     .catch(error => {
         console.log("Error on POST /api/books", error)
     })
+}
+
+const questionTwo = () => {
+    dispatch({ type: 'ADD_QUESTIONTWO', payload: reply});
+    history.pushState('./questionTwo')
+    console.log('Tell me more', questionTwo)
 }
 
     return(
