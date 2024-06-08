@@ -6,13 +6,13 @@ const pool = require('../modules/pool')
 // TODO: This route adds a new feedback entry
 router.post('/', (req, res) => {
     console.log('POST/feedback req.body', req.body);
-    const addfeedback = req.body;
+    const feedbackToAdd = req.body;
     const sqlText = `INSERT INTO feedback (feeling,understanding,support,comments)
     VALUES ($1,$2,$3,$4)`;
     
-    pool.query(sqlText, [addfeedback.feeling, addfeedback.understanding, addfeedback.support, addfeedback.comments])
+    pool.query(sqlText, [feedbackToAdd.feeling, feedbackToAdd.understanding, feedbackToAdd.support, feedbackToAdd.comments])
     .then((result) => {
-        console.log('added this feedback to the database', addfeedback);
+        console.log('added this feedback to the database', feedbackToAdd);
         res.sendStatus(201);
     })
     .cathc((error) => {

@@ -4,6 +4,7 @@ import './App.css';
 import { HashRouter as Router, Route } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import QuestionsOne from '../QuestionOne/QuestionOne';
 
 
 
@@ -25,8 +26,10 @@ function App() {
     })
     .catch(error => {
       console.log("Error on GET /api/feedback", error)
-    })
-  }
+    });
+  };
+
+  
 
   return (
     <div className='App'>
@@ -34,6 +37,11 @@ function App() {
         <h1 className='App-title'>Feedback!</h1>
         <h4>Don't forget it!</h4>
       </header>
+      <section>
+        <h2>Start the FeedBack!</h2>
+
+        <QuestionsOne fetchFeedback= {fetchFeedback}/>
+      </section>
     </div>
   );
 }
