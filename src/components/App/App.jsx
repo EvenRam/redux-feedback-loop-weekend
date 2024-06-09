@@ -16,6 +16,8 @@ function App() {
 
   const dispatch = useDispatch()
 
+
+
   useEffect(() => {
     console.log('in useEffect')
     fetchFeedback();
@@ -59,7 +61,7 @@ function App() {
         </Route>
 
         <Route path="/QuestionThree">
-          <QuestionThree />
+          <QuestionThree fetchFeedback={fetchFeedback}/>
           <div>
             <hr />
             <Link to="/QuestionFour"><button>Next</button></Link>
@@ -67,7 +69,7 @@ function App() {
         </Route>
 
         <Route path="/QuestionFour">
-          <QuestionFour />
+          <QuestionFour fetchFeedback={fetchFeedback} />
           <div>
             <hr />
             <Link to="/QuestionFour"><button>Next</button></Link>

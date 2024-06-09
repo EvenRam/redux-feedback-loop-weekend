@@ -1,15 +1,12 @@
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch,} from "react-redux";
 import { useState } from 'react';
 
-//import QuestionOne from "../QuestionOne/QuestionOne";
 
 const questionTwo = ({fetchFeedback}) => {
     const dispatch = useDispatch();
     //const feedback = useSelector(store => store.feedbackReducer)
     //const underStandingReply = useSelector( store => store.understandingReducer)
-    const history = useHistory();
-
+   
     const[getReply,setGetReply] = useState ([])
 
     const handleSubmit = (event) => {
@@ -25,7 +22,7 @@ const questionTwo = ({fetchFeedback}) => {
         <>
         <div>
             <h2> How well are you understanding the content?</h2>
-            <form onSubmit={handleSubmit} className= "add-feedback">
+            <form onSubmit={handleSubmit} className= "add--second-feedback">
                 <input 
                 type='number'
                 vaule= {getReply.understanding}

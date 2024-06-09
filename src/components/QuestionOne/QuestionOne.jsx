@@ -1,46 +1,47 @@
 import { useState } from 'react';
 import axios from 'axios'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
-const questionsOne = ({fetchFeedback}) => {
+const questionsOne = () => {
+
     const dispatch = useDispatch();
 
-  const[reply,setReply] = useState ([])
+    const fetchFeedback = useSelector((store) => store.feedbackReducer)
 
-const handleSubmit = (event) => {
-event.preventDefault()
+    const [reply, setReply] = useState([])
 
-    const newFeedback = {reply: 'feeling', reply:"understanding",reply:"support",reply:"comments",}
-    axios.post('/api/feedback', newFeedback)
-    .then((response)=>{
-      fetchFeedback()
-      setReply('')
-    })
-    .catch(error => {
-        console.log("Error on POST /api/books", error)
-    })
-}
 
-const questionTwo = () => {
-    dispatch({ type: 'ADD_QUESTIONTWO', payload: reply});
-    history.pushState('./questionTwo')
-    console.log('Tell me more', questionTwo)
-}
+    const handleSubmit = (event) => {
+        event.preventDefault()
 
-    return(
+        const newFeedback = { reply: 'feeling', reply: "understanding", reply: "support", reply: "comments", }
+        axios.post('/api/feedback', newFeedback)
+            .then((response) => {
+                fetchFeedback()
+                setReply()
+                fetchFeedback
+            })
+            .catch(error => {
+                console.log("Error on POST /api/books", error)
+            })
+    }
+
+
+
+    return (
         <>
-       <section>
-        <h2>How are you feeling today? </h2>
-            <form onSubmit={handleSubmit} className= "add-feedback">
-                <input 
-                type='number'
-                vaule= {reply.feeling}
-                onChange={(event)=> setReply(event.target.value)}/>
-            </form>
-            <button type='submit'>Submit</button>
+            <section>
+                <h2>How are you feeling today? </h2>
+                <form onSubmit={handleSubmit} className="add-feedback">
+                    <input
+                        type='number'
+                        vaule={reply.feeling}
+                        onChange={(event) => setReply(event.target.value)} />
+                </form>
+                <button type='submit'>Submit</button>
 
-      </section> 
+            </section>
         </>
     )
 }
