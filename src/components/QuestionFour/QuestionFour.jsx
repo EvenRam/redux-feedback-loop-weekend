@@ -26,6 +26,7 @@ const QuestionFour = () => {
         <h2>Any comments you want to leave? </h2>
              <form onSubmit={handleSubmit} className="add-fourth">
                 <input 
+                    data-testid="input"
                     type="text"
                     value = {getFour}
                     onChange={(event) => setGetFour(event.target.value)}

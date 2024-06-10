@@ -59,6 +59,7 @@ const questionsOne = () => {
                 <h2>How are you feeling today? </h2>
                 <form onSubmit={handleSubmit} className="add-feedback">
                     <input
+                        data-testid="input"
                         type='number'
                         vaule={getReply}
                         onChange={(event) => setGetReply(event.target.value)} />

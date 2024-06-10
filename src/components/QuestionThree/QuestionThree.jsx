@@ -28,6 +28,7 @@ dispatch({
 
         <form onSubmit={handleSubmit} className="add-third-feedback">
             <input
+            data-testid="input"
             type ='number'
             value={getThree}
             onChange={(event) => setGetThree(event.target.value)}/>

@@ -5,7 +5,9 @@ const Thankyou = () => {
     return (
 
     <>
-    <h1> Thank you for your feedback!</h1>
+    <h1> Your Fedback has been Submitted</h1>
+
+    <h2> Thank you for your feedback!</h2>
 
     </>
 

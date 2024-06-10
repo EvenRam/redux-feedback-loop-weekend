@@ -39,7 +39,7 @@ function App() {
           <QuestionTwo />
           <div>
             <hr />
-            <Link to="/QuestionThree"><button>Next</button></Link>
+            <Link to="/QuestionThree"><button data-testid>Next</button></Link>
           </div>
         </Route>
 
@@ -47,7 +47,7 @@ function App() {
           <QuestionThree />
           <div>
             <hr />
-            <Link to="/QuestionFour"><button>Next</button></Link>
+            <Link to="/QuestionFour"><button data-testid>Next</button></Link>
           </div>
         </Route>
 
@@ -55,7 +55,7 @@ function App() {
           <QuestionFour  />
           <div>
             <hr />
-            <Link to="/Review"><button>Next</button></Link>
+            <Link to="/Review"><button data-testid>Next</button></Link>
           </div>
         </Route>
 
@@ -63,7 +63,7 @@ function App() {
           <Review />
           <div>
             <hr />
-            <Link to="/Thankyou"><button>Next</button></Link>
+            <Link to="/Thankyou">< button data-testid>Next</button></Link>
           </div>
           </Route>
 
@@ -71,7 +71,7 @@ function App() {
           <Thankyou/>
           <div>
             <hr />
-            <Link to="/"><button>Next</button></Link>
+            <Link to="/"><button data-testid>Next</button></Link>
           </div>
           </Route>
 

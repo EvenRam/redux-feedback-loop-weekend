@@ -26,6 +26,7 @@ const questionTwo = () => {
             <h2> How well are you understanding the content?</h2>
             <form onSubmit={handleSubmit} className= "add-feedback">
                 <input 
+                data-testid="input"
                 type='number'
                 vaule= {getTwo}
                 onChange={(event)=> setGetTwo(event.target.value)}/>
