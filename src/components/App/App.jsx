@@ -2,41 +2,20 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import { HashRouter as Router, Route, Link } from "react-router-dom";
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+
 import QuestionsOne from '../QuestionOne/QuestionOne';
 import QuestionTwo from '../QuestionTwo/QuestionTwo';
 import QuestionThree from '../QuestionThree/QuestionThree';
 import QuestionFour from '../QuestionFour/QuestionFour';
+import Review from '../Review/Review';
+import Thankyou from '../ThankYou/ThankYou';
 
 
 
 
 function App() {
 
-  const dispatch = useDispatch()
 
-
-
-  useEffect(() => {
-    console.log('in useEffect')
-    fetchFeedback();
-  }, []);
-
-  const fetchFeedback = () => {
-    axios({
-      method: 'GET',
-      url: `/api/feedback`
-    })
-      .then((response) => {
-        console.log(response.data);
-        // TODO - update this to dispatch to Redux
-        dispatch({type:'SET_FEELING', payload:response.data })
-      })
-      .catch((error) => {
-        console.log('error on GET', error);
-      });
-  };
 
 
 
@@ -49,7 +28,7 @@ function App() {
         </header>
 
         <Route exact path="/">
-          <QuestionsOne fetchFeedback={fetchFeedback} />
+          <QuestionsOne  />
           <hr />
           <Link to="/QuestionTwo"><button>Next</button></Link>
         </Route>
@@ -65,7 +44,7 @@ function App() {
         </Route>
 
         <Route path="/QuestionThree">
-          <QuestionThree fetchFeedback={fetchFeedback}/>
+          <QuestionThree />
           <div>
             <hr />
             <Link to="/QuestionFour"><button>Next</button></Link>
@@ -73,16 +52,31 @@ function App() {
         </Route>
 
         <Route path="/QuestionFour">
-          <QuestionFour fetchFeedback={fetchFeedback} />
+          <QuestionFour  />
           <div>
             <hr />
-            <Link to="/QuestionFour"><button>Next</button></Link>
+            <Link to="/Review"><button>Next</button></Link>
           </div>
         </Route>
 
-        <section>
-        </section>
+        <Route path="/Review">
+          <Review />
+          <div>
+            <hr />
+            <Link to="/Thankyou"><button>Next</button></Link>
+          </div>
+          </Route>
+
+          <Route path="/Thankyou">
+          <Thankyou/>
+          <div>
+            <hr />
+            <Link to="/"><button>Next</button></Link>
+          </div>
+          </Route>
+
       </div>
+
 
 
     </Router>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react'
 
 
 const questionsOne = () => {
@@ -10,6 +11,27 @@ const questionsOne = () => {
     const feedback = useSelector((store) => store.feelingReducer)
 
     const [getReply, setGetReply] = useState([])
+
+
+  useEffect(() => {
+    console.log('in useEffect')
+    fetchFeedback();
+  }, []);
+
+  const fetchFeedback = () => {
+    axios({
+      method: 'GET',
+      url: `/api/feedback`
+    })
+      .then((response) => {
+        console.log(response.data);
+        // TODO - update this to dispatch to Redux
+        dispatch({type:'SET_FEELING', payload:response.data })
+      })
+      .catch((error) => {
+        console.log('error on GET', error);
+      });
+  };
 
 
     const handleSubmit = (event) => {
