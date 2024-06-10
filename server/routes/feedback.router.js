@@ -7,18 +7,23 @@ const pool = require('../modules/pool')
 router.post('/', (req, res) => {
     console.log('POST/feedback req.body', req.body);
     const feedbackToAdd = req.body;
-    const sqlText = `INSERT INTO feedback (feeling,understanding,support,comments)
-    VALUES ($1,$2,$3,$4)`;
-    
-    pool.query(sqlText, [feedbackToAdd.feeling, feedbackToAdd.understanding, feedbackToAdd.support, feedbackToAdd.comments])
-    .then((result) => {
-        console.log('added this feedback to the database', feedbackToAdd);
-        res.sendStatus(201);
-    })
-    .cathc((error) => {
-        console.log(`Error making database query ${sqlText}:`, error);
+    const sqlText = `
+        INSERT INTO "feedback" 
+            ("feeling","understanding","support","comments")
+            VALUES 
+            ($1,$2,$3,$4);
+            
+            `
+const sqValues = [feedbackToAdd.feeling, feedbackToAdd.understanding, feedbackToAdd.support, feedbackToAdd.comments]
+    pool.query(sqlText, sqValues)
+        .then((result) => {
+            console.log('added this feedback to the database', feedbackToAdd);
+            res.sendStatus(201);
+        })
+        .cathc((error) => {
+            console.log(`Error making database query ${sqlText}:`, error);
             res.sendStatus(500); // Good server always respond
-    })
+        })
 })
 
 

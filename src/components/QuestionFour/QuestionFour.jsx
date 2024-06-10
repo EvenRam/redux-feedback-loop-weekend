@@ -1,31 +1,37 @@
-import { useDispatch,} from "react-redux";
-import { useState } from 'react';
+import { useDispatch,useSelector} from "react-redux";
+import { useState} from 'react';
 
 
-const QuestionFour = ({fetchFeedback}) => {
+const QuestionFour = () => {
 
     const dispatch = useDispatch();
 
-    const[getFour, setGetFour] = useState ('')
+    const comments = useSelector((store) => store.commentsReducer)
 
-    const handldeSubmit = (event)=> {
+    const[getFour, setGetFour] = useState ([])
+
+    const handleSubmit = (event)=> {
         event.preventDefault()
-        fetchFeedback()
-        setGetFour ('')
+       
+        dispatch({
+            type: '"SET_COMMENTS"',
+            payload: getFour
+        })
+    
     }
 
     return(
         <>
         <section>
         <h2>Any comments you want to leave? </h2>
-             <form onSubmit={handldeSubmit} className="add-fourth">
+             <form onSubmit={handleSubmit} className="add-fourth">
                 <input 
                     type="text"
-                    value = {getFour.comments}
+                    value = {getFour}
                     onChange={(event) => setGetFour(event.target.value)}
                 />
              </form>
-             <button type="submit">Submit</button>
+             <button onClick={handleSubmit} type="Submit">Submit</button>
         </section>
         </>
     )

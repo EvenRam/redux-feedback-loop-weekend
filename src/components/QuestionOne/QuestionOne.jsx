@@ -7,27 +7,29 @@ const questionsOne = () => {
 
     const dispatch = useDispatch();
 
-    const fetchFeedback = useSelector((store) => store.feedbackReducer)
+    const feedback = useSelector((store) => store.feelingReducer)
 
-    const [reply, setReply] = useState([])
+    const [getReply, setGetReply] = useState([])
 
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        const newFeedback = { reply: 'feeling', reply: "understanding", reply: "support", reply: "comments", }
-        axios.post('/api/feedback', newFeedback)
-            .then((response) => {
-                fetchFeedback()
-                setReply()
-                fetchFeedback
-            })
-            .catch(error => {
-                console.log("Error on POST /api/books", error)
-            })
+    axios({
+        method: "POST",
+        url: "/api/feedback",
+        data: {getReply}
+      })
+      .then((response) => {
+        // Reset 
+        setGetReply("")
+        // Refetch
+        feedback()
+      })
+      .catch((error) => {
+        console.error("Something happened on POST request to /api/feedback: ", error)
+      })
     }
-
-
 
     return (
         <>
@@ -36,10 +38,10 @@ const questionsOne = () => {
                 <form onSubmit={handleSubmit} className="add-feedback">
                     <input
                         type='number'
-                        vaule={reply.feeling}
-                        onChange={(event) => setReply(event.target.value)} />
+                        vaule={getReply}
+                        onChange={(event) => setGetReply(event.target.value)} />
                 </form>
-                <button type='submit'>Submit</button>
+                <button onClick={handleSubmit} type='submit'>Submit</button>
 
             </section>
         </>

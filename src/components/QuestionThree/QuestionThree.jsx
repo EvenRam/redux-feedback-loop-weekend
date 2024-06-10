@@ -1,41 +1,38 @@
-import { useDispatch,} from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { useState } from 'react';
 
-const QuestionThree = ({fetchFeedback, reply}) => {
+const QuestionThree = ({}) => {
 
     const dispatch = useDispatch();
 
-    
+    const SupportReducer = useSelector((store) => store.SupportReducer)
 
-    const[getthree,setGetThree] = useState ([])
+
+    const[getThree,setGetThree] = useState ([])
 
 const handleSubmit = (event) => {
 event.preventDefault()
-    fetchFeedback()
-    setGetThree('')
-
-}
-
-const addToReview = () => {
-    console.log("reply",reply.support)
+console.log("reply",)
 dispatch({
-    type: 'GET_FEEDBACK',
-    payload: reply
+    type: 'SET_SUPPORT',
+    payload: getThree
 })
+
+   
 
 }
     return(
         <>
         <section>
-        <h2>How well are tyou being supported? </h2>
+        <h2>How well are you being supported? </h2>
 
         <form onSubmit={handleSubmit} className="add-third-feedback">
             <input
             type ='number'
-            value={getthree.support}
+            value={getThree}
             onChange={(event) => setGetThree(event.target.value)}/>
         </form>
-        <button onClick={addToReview} type="Submit">Submit</button>
+        <button onClick={handleSubmit} type="Submit">Submit</button>
         </section>
         </>
     )

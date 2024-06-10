@@ -24,13 +24,17 @@ function App() {
   }, []);
 
   const fetchFeedback = () => {
-    axios.get('api/feedback')
+    axios({
+      method: 'GET',
+      url: `/api/feedback`
+    })
       .then((response) => {
-        console.log('Feedback Data:', response.data)
-        dispatch({ type: "GET_FEEDBACK", payload: response.data })
+        console.log(response.data);
+        // TODO - update this to dispatch to Redux
+        dispatch({type:'SET_FEELING', payload:response.data })
       })
-      .catch(error => {
-        console.log("Error on GET /api/feedback", error)
+      .catch((error) => {
+        console.log('error on GET', error);
       });
   };
 

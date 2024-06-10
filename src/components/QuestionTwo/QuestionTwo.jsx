@@ -1,18 +1,20 @@
-import { useDispatch,} from "react-redux";
+//import { useHistory } from "react-router-dom";
+import { useDispatch,useSelector} from "react-redux";
 import { useState } from 'react';
 
 
-const questionTwo = ({fetchFeedback}) => {
+const questionTwo = () => {
     const dispatch = useDispatch();
-    //const feedback = useSelector(store => store.feedbackReducer)
-    //const underStandingReply = useSelector( store => store.understandingReducer)
+    const underStanding = useSelector( store => store.understandingReducer)
    
-    const[getReply,setGetReply] = useState ([])
+    const[getTwo,setGetTwo] = useState ([])
 
     const handleSubmit = (event) => {
     event.preventDefault()
-    fetchFeedback()
-    setGetReply('')
+    dispatch({
+        type: 'SET_UNDERSTANDING',
+        payload: getTwo,
+    })
         
     }
     
@@ -22,13 +24,13 @@ const questionTwo = ({fetchFeedback}) => {
         <>
         <div>
             <h2> How well are you understanding the content?</h2>
-            <form onSubmit={handleSubmit} className= "add--second-feedback">
+            <form onSubmit={handleSubmit} className= "add-feedback">
                 <input 
                 type='number'
-                vaule= {getReply.understanding}
-                onChange={(event)=> setGetReply(event.target.value)}/>
+                vaule= {getTwo}
+                onChange={(event)=> setGetTwo(event.target.value)}/>
             </form>
-            <button type='submit'>Submit</button>
+            <button onClick={handleSubmit} type="Submit">Submit</button>
         </div>
         </>
     )
