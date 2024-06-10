@@ -1,23 +1,28 @@
 import { useDispatch,useSelector} from "react-redux";
 import { useState} from 'react';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 
 const QuestionFour = () => {
 
     const dispatch = useDispatch();
+    const history = useHistory()
+
 
     const comments = useSelector((store) => store.commentsReducer)
 
-    const[getFour, setGetFour] = useState ([])
+    const[getFour, setGetFour] = useState ("");
 
     const handleSubmit = (event)=> {
         event.preventDefault()
        
         dispatch({
-            type: '"SET_COMMENTS"',
+            type: "SET_COMMENTS",
             payload: getFour
         })
-    
+        history.push("/Review")
+
     }
 
     return(
