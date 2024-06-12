@@ -1,9 +1,13 @@
 import { useDispatch,useSelector} from "react-redux";
 import { useState } from 'react';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 const QuestionThree = ({}) => {
 
     const dispatch = useDispatch();
+    const history = useHistory()
+
 
     const SupportReducer = useSelector((store) => store.SupportReducer)
 
@@ -18,7 +22,8 @@ dispatch({
     payload: getThree
 })
 
-   
+history.push("/QuestionFour")
+
 
 }
     return(

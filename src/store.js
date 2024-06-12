@@ -28,7 +28,7 @@ const understandingReducer = (state = [], action) => {
   return state;
 }
 
-const SupportReducer = (state = [], action) => {
+const supportReducer = (state = [], action) => {
   if (action.type === "SET_SUPPORT") {
     console.log('action.payload', action.payload)
     const newSupport = action.payload
@@ -51,7 +51,7 @@ const store = createStore(
     // feedbackReducer,
     feelingReducer,
     understandingReducer,
-    SupportReducer,
+    supportReducer,
     commentsReducer // 👈 Be sure to replace this, too!
   }),
   applyMiddleware(logger),
